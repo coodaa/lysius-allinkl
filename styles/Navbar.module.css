@@ -43,18 +43,16 @@
 .nav {
   position: fixed;
   top: 4rem; /* Platz für die fixe Navbar */
-  left: 0;
+  right: -100%; /* Start außerhalb des Bildschirms */
   width: 100%;
   height: calc(100% - 4.2rem); /* Höhe abzüglich der Navbar */
   background-color: white; /* Hintergrundfarbe für das Dropdown-Menü */
-  overflow: hidden;
-  max-height: 0;
-  transition: max-height 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
   z-index: 999;
 }
 
 .nav.open {
-  max-height: calc(100vh - 4rem); /* Erhöhe die maximale Höhe für sichtbare Elemente */
+  transform: translateX(-100%); /* Verschiebe das Menü herein */
 }
 
 .navList {
@@ -110,27 +108,15 @@
   margin: 0;
 }
 
+/* Für Desktop-Version */
 @media (min-width: 600px) {
   .nav {
-    position: fixed;
-    top: 4rem;
-    right: 0;
-    left: auto;
-    width: 20rem;
-    height: calc(100vh - 5.5rem);
-    transition: max-height 0.3s ease-in-out;
-    background-color: white;
-    z-index: 1000;
-    overflow-y: auto;
+    right: -20rem; /* Start außerhalb des Bildschirms */
+    width: 20rem; /* Fixe Breite für das Dropdown-Menü */
   }
 
-  .logo,
-  .menuButton {
-    padding: 2rem 2rem 0 2rem;
-  }
-
-  .footerList {
-    display: none;
+  .nav.open {
+    transform: translateX(-20rem); /* Verschiebe das Menü herein */
   }
 }
 

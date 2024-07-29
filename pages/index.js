@@ -40,7 +40,7 @@ export default function HomePage({ images = [] }) {
 
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 3000);
+    }, 7000);
 
     return () => clearInterval(interval);
   }, [images.length]);

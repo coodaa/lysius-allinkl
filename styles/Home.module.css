@@ -2,7 +2,8 @@
   position: relative;
   text-align: center;
   width: 100%;
-  height: calc(100vh - 8rem); /* Vollbildhöhe minus Navbar und Footer */
+  height: 100vh;
+  overflow: hidden;
 }
 
 .overlayContainer {
@@ -38,28 +39,35 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 7rem; /* Standardgröße für mobile Geräte */
+  white-space: nowrap;
+  font-size: 25vw;
   font-family: 'Playfair Display', serif;
   color: white;
   margin: 0;
 }
 
-/* Medienabfragen für größere Bildschirme */
 @media (min-width: 600px) {
-  .title {
-    font-size: 10rem;
+
+  .container {
+
+    height: calc(100vh - 4rem);
   }
+
+
 }
 
 @media (min-width: 900px) {
-  .title {
-    font-size: 15rem;
+  .container {
+
+    height: calc(100vh - 6rem);
   }
 
 }
 
 @media (min-width: 1200px) {
-  .title {
-    font-size: 20rem;
+  .container {
+
+    height: calc(100vh - 7rem);
   }
+
 }
