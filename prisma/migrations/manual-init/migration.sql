@@ -1,3 +1,5 @@
+-- This is a baseline migration for the existing database
+
 -- CreateTables
 CREATE TABLE IF NOT EXISTS `Play` (
   `id` INT NOT NULL AUTO_INCREMENT,
