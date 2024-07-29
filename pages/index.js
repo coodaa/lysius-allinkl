@@ -1,6 +1,6 @@
-// pages/index.js
+export async function getServerSideProps(context) {
+  console.log("getServerSideProps called"); // Debugging-Ausgabe
 
-export async function getServerSideProps() {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
   console.log("API URL:", apiUrl); // Debugging-Ausgabe
   let plays = [];
