@@ -8,6 +8,7 @@ export async function getServerSideProps(context) {
   try {
     const res = await fetch(`${apiUrl}/api/plays`);
     console.log("Fetch response status:", res.status); // Debugging-Ausgabe
+    console.log("hello"); // Debugging-Ausgabe
     if (res.ok) {
       plays = await res.json();
       console.log("Plays fetched successfully:", plays); // Debugging-Ausgabe
