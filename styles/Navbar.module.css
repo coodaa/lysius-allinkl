@@ -42,13 +42,16 @@
 
 .nav {
   position: fixed;
-  top: 4rem; /* Platz für die fixe Navbar */
+  top: 3.6rem; /* Platz für die fixe Navbar */
   right: -100%; /* Start außerhalb des Bildschirms */
   width: 100%;
-  height: calc(100% - 4.2rem); /* Höhe abzüglich der Navbar */
+  height: calc(100% - 3.6rem); /* Höhe abzüglich der Navbar */
   background-color: white; /* Hintergrundfarbe für das Dropdown-Menü */
   transition: transform 0.3s ease-in-out;
   z-index: 999;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Stellt sicher, dass die Titel oben angezeigt werden */
 }
 
 .nav.open {
@@ -60,6 +63,12 @@
   padding: 0;
   margin: 0;
   font-weight: bold !important;
+  text-align: left; /* Text linksbündig ausrichten */
+  margin-top: 4rem;
+}
+
+.navList li {
+  text-align: left; /* Text linksbündig ausrichten */
 }
 
 .navList a {
@@ -68,6 +77,7 @@
   text-decoration: none;
   color: black;
   font-weight: bold; /* Schrift fett machen */
+  text-align: left; /* Links linksbündig ausrichten */
 }
 
 .navList a:hover {
@@ -80,6 +90,7 @@
   text-decoration: none;
   color: black;
   font-weight: bold; /* Schrift fett machen */
+  text-align: left; /* Links linksbündig ausrichten */
 }
 
 .link:hover {
@@ -117,6 +128,11 @@
 
   .nav.open {
     transform: translateX(-20rem); /* Verschiebe das Menü herein */
+  }
+
+  .logo,
+  .menuButton {
+    padding: 2rem 2rem 0 2rem;
   }
 }
 
