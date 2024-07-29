@@ -8,6 +8,7 @@ export async function getServerSideProps() {
     const res = await fetch(`${apiUrl}/api/plays`);
     if (res.ok) {
       plays = await res.json();
+      console.log("Plays fetched successfully:", plays); // Debugging-Ausgabe
       plays = plays.map((play) => ({
         ...play,
         videoUrl: play.videoUrl
