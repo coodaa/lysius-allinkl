@@ -21,6 +21,8 @@ export async function getServerSideProps(context) {
     console.error("Error fetching images:", error);
   }
 
+  console.log("Images in getServerSideProps:", images); // Debugging-Ausgabe
+
   return {
     props: {
       images,

@@ -1,0 +1,25 @@
+.pageContainer {
+  padding-left: 1rem; /* Standard für mobile Geräte */
+  padding-right: 1rem; /* Standard für mobile Geräte */
+}
+
+@media (min-width: 600px) {
+  .pageContainer {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .pageContainer {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .pageContainer {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}

@@ -10,6 +10,8 @@ export default async function handler(req, res) {
     res.status(200).json(images);
   } catch (error) {
     console.error("Error fetching images from database:", error); // Debugging-Ausgabe
-    res.status(500).json({ error: "Error fetching images" });
+    res
+      .status(500)
+      .json({ error: "Error fetching images", details: error.message });
   }
 }

@@ -14,3 +14,9 @@ model Play {
   imageUrl    String?
   videoUrl    String?
 }
+
+model landingpageimg {
+  id    Int    @id @default(autoincrement())
+  url   String
+  name  String
+}

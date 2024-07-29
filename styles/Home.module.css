@@ -1,38 +1,32 @@
-/* styles/Home.module.css */
 .container {
   position: relative;
+  text-align: center;
   width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  background-color: gray; /* Temporäre Hintergrundfarbe zum Debuggen */
+  height: calc(100vh - 8rem); /* Vollbildhöhe minus Navbar und Footer */
 }
 
 .overlayContainer {
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: relative;
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.5);
 }
 
 .imageWrapper {
   position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
 }
 
 .image {
   position: absolute;
   width: 100%;
   height: 100%;
+  object-fit: cover;
   opacity: 0;
-  transition: opacity 1s;
+  transition: opacity 1s ease-in-out;
 }
 
 .image.show {
@@ -40,7 +34,32 @@
 }
 
 .title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 7rem; /* Standardgröße für mobile Geräte */
+  font-family: 'Playfair Display', serif;
   color: white;
-  font-size: 4rem;
-  z-index: 1;
+  margin: 0;
+}
+
+/* Medienabfragen für größere Bildschirme */
+@media (min-width: 600px) {
+  .title {
+    font-size: 10rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .title {
+    font-size: 15rem;
+  }
+
+}
+
+@media (min-width: 1200px) {
+  .title {
+    font-size: 20rem;
+  }
 }
