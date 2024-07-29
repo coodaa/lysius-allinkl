@@ -8,7 +8,7 @@ export async function getServerSideProps(context) {
   try {
     const res = await fetch(`${apiUrl}/api/plays`);
     console.log("Fetch response status:", res.status); // Debugging-Ausgabe
-    console.log("hello"); // Debugging-Ausgabe
+    console.log("Hello World"); // Debugging-Ausgabe
     if (res.ok) {
       plays = await res.json();
       console.log("Plays fetched successfully:", plays); // Debugging-Ausgabe
@@ -33,6 +33,9 @@ export async function getServerSideProps(context) {
 }
 
 export default function Home({ plays }) {
+  console.log("Rendering Home component"); // Debugging-Ausgabe
+  console.log("Hello World from Home component"); // Debugging-Ausgabe
+
   return (
     <div>
       <h1>Theaterstücke</h1>
