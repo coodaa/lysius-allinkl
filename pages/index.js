@@ -1,67 +1,75 @@
+import { useEffect, useState } from "react";
+import styles from "../styles/Home.module.css";
+
 export async function getServerSideProps(context) {
   console.log("getServerSideProps called"); // Debugging-Ausgabe
 
   const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
   console.log("API URL:", apiUrl); // Debugging-Ausgabe
-  let plays = [];
+  let images = [];
 
   try {
-    const res = await fetch(`${apiUrl}/api/plays`);
-    console.log("Fetch response status:", res.status); // Debugging-Ausgabe
-    console.log("Hello World"); // Debugging-Ausgabe
+    const res = await fetch(`${apiUrl}/api/landingpageimg`);
+    console.log("Fetch images response status:", res.status); // Debugging-Ausgabe
     if (res.ok) {
-      plays = await res.json();
-      console.log("Plays fetched successfully:", plays); // Debugging-Ausgabe
-      plays = plays.map((play) => ({
-        ...play,
-        videoUrl: play.videoUrl
-          .replace("youtu.be/", "youtube.com/embed/")
-          .replace("watch?v=", "embed/"),
-      }));
+      images = await res.json();
+      console.log("Images fetched successfully:", images); // Debugging-Ausgabe
     } else {
-      console.error("Failed to fetch plays:", res.status);
+      console.error("Failed to fetch images:", res.status);
     }
   } catch (error) {
-    console.error("Error fetching plays:", error);
+    console.error("Error fetching images:", error);
   }
 
   return {
     props: {
-      plays,
+      images,
     },
   };
 }
 
-export default function Home({ plays }) {
-  console.log("Rendering Home component"); // Debugging-Ausgabe
-  console.log("Hello World from Home component"); // Debugging-Ausgabe
+export default function HomePage({ images = [] }) {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  console.log("Images in component:", images); // Debugging-Ausgabe
+
+  useEffect(() => {
+    if (images.length === 0) return;
+
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [images.length]);
 
   return (
-    <div>
-      <h1>Theaterstücke</h1>
-      <ul>
-        {plays.map((play) => (
-          <li key={play.id}>
-            <h2>{play.title}</h2>
-            <p>{play.description}</p>
-            {play.imageUrl && <img src={play.imageUrl} alt={play.title} />}
-            {play.videoUrl && (
-              <div>
-                <iframe
-                  width="560"
-                  height="315"
-                  src={play.videoUrl}
-                  title={play.title}
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  allowFullScreen
-                ></iframe>
-              </div>
-            )}
-          </li>
-        ))}
-      </ul>
+    <div className={styles.container}>
+      <div className={styles.overlayContainer}>
+        <div className={styles.imageWrapper}>
+          {images.map((image, index) => (
+            <div
+              key={index}
+              className={`${styles.image} ${
+                index === currentImageIndex ? styles.show : ""
+              }`}
+            >
+              <img
+                src={image.url}
+                alt={image.name}
+                style={{
+                  position: "absolute",
+                  height: "100%",
+                  width: "100%",
+                  inset: "0px",
+                  objectFit: "cover",
+                }}
+              />
+            </div>
+          ))}
+        </div>
+        <h1 className={styles.title}>Lysius</h1>
+      </div>
     </div>
   );
 }
