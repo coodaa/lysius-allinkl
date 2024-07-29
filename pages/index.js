@@ -1,5 +1,7 @@
 // pages/index.js
 
+import { Send_Flowers } from "next/font/google";
+
 export async function getServerSideProps() {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
   const res = await fetch(`${apiUrl}/api/plays`);
@@ -50,3 +52,4 @@ export default function Home({ plays }) {
     </div>
   );
 }
+// Send_Flowers;jsdf
