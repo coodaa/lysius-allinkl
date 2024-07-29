@@ -2,10 +2,12 @@
 
 export async function getServerSideProps() {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+  console.log("API URL:", apiUrl); // Debugging-Ausgabe
   let plays = [];
 
   try {
     const res = await fetch(`${apiUrl}/api/plays`);
+    console.log("Fetch response status:", res.status); // Debugging-Ausgabe
     if (res.ok) {
       plays = await res.json();
       console.log("Plays fetched successfully:", plays); // Debugging-Ausgabe
