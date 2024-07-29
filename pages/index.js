@@ -1,23 +1,29 @@
 // pages/index.js
 
-import { Send_Flowers } from "next/font/google";
-
 export async function getServerSideProps() {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
-  const res = await fetch(`${apiUrl}/api/plays`);
-  const plays = await res.json();
+  let plays = [];
 
-  // Konvertieren Sie die Video-URLs in das Embed-Format
-  const updatedPlays = plays.map((play) => ({
-    ...play,
-    videoUrl: play.videoUrl
-      .replace("youtu.be/", "youtube.com/embed/")
-      .replace("watch?v=", "embed/"),
-  }));
+  try {
+    const res = await fetch(`${apiUrl}/api/plays`);
+    if (res.ok) {
+      plays = await res.json();
+      plays = plays.map((play) => ({
+        ...play,
+        videoUrl: play.videoUrl
+          .replace("youtu.be/", "youtube.com/embed/")
+          .replace("watch?v=", "embed/"),
+      }));
+    } else {
+      console.error("Failed to fetch plays:", res.status);
+    }
+  } catch (error) {
+    console.error("Error fetching plays:", error);
+  }
 
   return {
     props: {
-      plays: updatedPlays,
+      plays,
     },
   };
 }
@@ -52,4 +58,3 @@ export default function Home({ plays }) {
     </div>
   );
 }
-// Send_Flowers;jsdf
