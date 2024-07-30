@@ -9,11 +9,6 @@ const Navbar = ({ currentTitle, plays }) => {
   const router = useRouter();
   const { t, i18n } = useTranslation("common");
 
-  useEffect(() => {
-    console.log("Router:", router);
-    console.log("i18n:", i18n);
-  }, [router, i18n]);
-
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
@@ -32,7 +27,6 @@ const Navbar = ({ currentTitle, plays }) => {
   };
 
   const switchLanguage = (lang) => {
-    console.log("Switching to language:", lang);
     router.push(router.pathname, router.asPath, { locale: lang });
   };
 
@@ -47,15 +41,15 @@ const Navbar = ({ currentTitle, plays }) => {
     };
   }, [menuOpen]);
 
-  useEffect(() => {
-    console.log("Current locale:", i18n.language);
-  }, [i18n.language]);
+  const displayTitle = router.pathname.startsWith("/plays/")
+    ? currentTitle
+    : "LYSIUS";
 
   return (
     <header className={styles.navbar}>
       <div className={styles.logo}>
         <Link href="/" legacyBehavior>
-          <a>{currentTitle}</a>
+          <a>{displayTitle || "LYSIUS"}</a>
         </Link>
       </div>
       <div className={styles.menuButton} onClick={toggleMenu}>

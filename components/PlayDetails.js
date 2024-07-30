@@ -1,15 +1,18 @@
+// src/components/PlayDetails.js
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import styles from "../styles/PlayPage.module.css";
 
-const PlayDetails = ({ play }) => {
+const PlayDetails = ({ play, setCurrentTitle }) => {
   const router = useRouter();
   const { t } = useTranslation("common");
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
+    setCurrentTitle(play.title); // Set the current title
+
     const images = [
       play.imageUrl,
       play.imageUrl1,
@@ -31,7 +34,7 @@ const PlayDetails = ({ play }) => {
     }, 7000);
 
     return () => clearInterval(interval);
-  }, [play]);
+  }, [play, setCurrentTitle]);
 
   const goBack = () => {
     router.push("/");

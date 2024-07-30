@@ -1,4 +1,4 @@
-/* Standardstile für mobile Geräte */
+/* Standard styles for mobile devices */
 .navbar {
   width: 100%;
   display: flex;
@@ -10,86 +10,96 @@
   z-index: 1000;
   background-color: white;
   font-weight: bold !important;
+  padding: 0 1rem; /* Adjust this if needed */
+}
+
+.navbar::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 1rem; /* Align with padding */
+  right: 1rem; /* Align with padding */
+  border-bottom: 4px solid black; /* Add a black line below the navbar */
 }
 
 .logo {
-  padding: 2rem 1rem 0 1rem; /* Einheitliche Polsterung */
+  padding: 2rem 0;
 }
 
 .menuButton {
-  padding: 2rem 1rem 0 0; /* Einheitliche Polsterung */
+  padding: 2rem 0;
   cursor: pointer;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   user-select: none;
-  -webkit-user-select: none; /* Safari-Unterstützung */
-  font-weight: bold; /* Schrift fett machen */
+  -webkit-user-select: none;
+  font-weight: bold;
 }
 
 .logo a {
   text-decoration: none;
   color: black;
-  font-size: 1.5rem;
-  font-weight: bold; /* Schrift fett machen */
+  font-size: 1.8rem;
+  font-weight: bold;
 }
 
 .logo a:hover {
-  text-decoration: underline; /* Unterstreicht den Link beim Hover */
+  text-decoration: underline;
 }
 
 .menuButton:hover {
-  text-decoration: underline; /* Unterstreicht den Button beim Hover */
+  text-decoration: underline;
 }
 
 .nav {
   position: fixed;
-  top: 3.6rem; /* Platz für die fixe Navbar */
-  right: -100%; /* Start außerhalb des Bildschirms */
+  top: 4.1rem;
+  right: -100%;
   width: 100%;
-  height: calc(100% - 3.6rem); /* Höhe abzüglich der Navbar */
-  background-color: white; /* Hintergrundfarbe für das Dropdown-Menü */
+  height: calc(100% - 4.1rem);
+  background-color: white;
   transition: transform 0.3s ease-in-out;
   z-index: 999;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Stellt sicher, dass die Titel oben angezeigt werden */
+  justify-content: flex-start;
 }
 
 .nav.open {
-  transform: translateX(-100%); /* Verschiebe das Menü herein */
+  transform: translateX(-100%);
 }
 
 .navList {
-  list-style: none; /* Entferne die Punkte vor den <li>-Elementen */
+  list-style: none;
   padding: 0;
   margin: 0;
   font-weight: bold !important;
-  margin-top: 1em;
-}
-
-.navList li {
-  text-align: left; /* Text linksbündig ausrichten */
+  margin-top: 2em;
+  font-size: 1.5rem;
+  left: 1rem;
+  position: absolute;
 }
 
 .navList a {
   display: block;
-  padding: 1rem;
   text-decoration: none;
   color: black;
-  font-weight: bold; /* Schrift fett machen */
-  text-align: left; /* Links linksbündig ausrichten */
+  font-weight: bold;
+  text-align: left;
+  /* padding: 1em; */
+  margin: 0;
 }
 
 .navList a:hover {
-  text-decoration: underline; /* Unterstreicht den Link beim Hover */
+  text-decoration: underline;
 }
 
 .link {
   display: block;
-  padding: 1rem;
+  padding: 1rem; /* Same padding as .navList a */
   text-decoration: none;
   color: black;
-  font-weight: bold; /* Schrift fett machen */
-  text-align: left; /* Links linksbündig ausrichten */
+  font-weight: bold;
+  text-align: left;
 }
 
 .link:hover {
@@ -106,7 +116,8 @@
   position: absolute;
   right: 1rem;
   bottom: 1rem;
-  font-weight: bold; /* Schrift fett machen */
+  font-weight: bold;
+  font-size: 1.3rem;
 }
 
 .footerOpen {
@@ -120,7 +131,9 @@
 
 .languageSwitch {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.3rem;
+  padding-left: 1rem;
+  margin-top: 3rem;
 }
 
 .languageLink {
@@ -134,52 +147,48 @@
   text-decoration: underline;
 }
 
-/* styles/Navbar.module.css */
-.link {
-  display: block;
-  padding: 1rem;
-  text-decoration: none;
-  color: black;
-  font-weight: bold;
-  text-align: left;
-}
-
-.link:hover {
-  background-color: #f0f0f0;
-}
-
-.link.active {
-  text-decoration: underline; /* or any other style to highlight the active link */
-}
-
-
-/* Für Desktop-Version */
+/* For desktop version */
 @media (min-width: 600px) {
   .nav {
-    right: -20rem; /* Start außerhalb des Bildschirms */
-    width: 20rem; /* Fixe Breite für das Dropdown-Menü */
+    right: -20rem;
+    width: 20rem;
   }
 
   .nav.open {
-    transform: translateX(-20rem); /* Verschiebe das Menü herein */
+    transform: translateX(-20rem);
   }
 
   .logo,
   .menuButton {
-    padding: 2rem 2rem 0 2rem;
+    padding: 2rem 0;
+  }
+
+  .navbar::before {
+    left: 2rem;
+    right: 2rem;
   }
 }
 
 @media (min-width: 900px) {
   .logo,
   .menuButton {
-    padding: 2rem 3rem 0 3rem;
+    padding: 2rem 0;
+  }
+
+  .navbar::before {
+    left: 3rem;
+    right: 3rem;
   }
 }
 
 @media (min-width: 1200px) {
   .logo,
   .menuButton {
-    padding: 2rem 4rem 0 4rem;
+    padding: 2rem 0;
+  }
+
+  .navbar::before {
+    left: 4rem;
+    right: 4rem;
   }
 }

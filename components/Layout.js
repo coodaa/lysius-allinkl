@@ -1,3 +1,4 @@
+// src/components/Layout.js
 import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
 import styles from "../styles/Layout.module.css";
@@ -23,7 +24,6 @@ const Layout = ({ children }) => {
     fetchPlays();
   }, []);
 
-  // Clone children and pass the setCurrentTitle function
   const childrenWithProps = React.Children.map(children, (child) =>
     React.cloneElement(child, { setCurrentTitle })
   );

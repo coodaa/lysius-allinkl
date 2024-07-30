@@ -1,10 +1,11 @@
+// src/pages/plays/[id].js
 import React from "react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import PlayDetails from "../../components/PlayDetails";
 import prisma from "../../lib/prisma";
 
-const PlayPage = ({ play }) => {
-  return <PlayDetails play={play} />;
+const PlayPage = ({ play, setCurrentTitle }) => {
+  return <PlayDetails play={play} setCurrentTitle={setCurrentTitle} />;
 };
 
 export async function getServerSideProps(context) {
