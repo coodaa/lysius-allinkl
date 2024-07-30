@@ -1,7 +1,6 @@
-// src/pages/_app.js
+import { appWithTranslation } from "next-i18next";
 import "../styles/global.css";
 import Layout from "../components/Layout";
-import { appWithTranslation } from "next-i18next";
 
 function MyApp({ Component, pageProps }) {
   return (

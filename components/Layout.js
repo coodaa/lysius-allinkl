@@ -1,16 +1,39 @@
+import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
-import Footer from "./Footer";
 import styles from "../styles/Layout.module.css";
-import { appWithTranslation } from "next-i18next";
 
 const Layout = ({ children }) => {
+  const [currentTitle, setCurrentTitle] = useState("LYSIUS");
+  const [plays, setPlays] = useState([]);
+
+  useEffect(() => {
+    const fetchPlays = async () => {
+      try {
+        const res = await fetch("/api/plays");
+        if (res.ok) {
+          const data = await res.json();
+          setPlays(data || []);
+        } else {
+          console.error("Failed to fetch plays:", res.status);
+        }
+      } catch (error) {
+        console.error("Error fetching plays:", error);
+      }
+    };
+    fetchPlays();
+  }, []);
+
+  // Clone children and pass the setCurrentTitle function
+  const childrenWithProps = React.Children.map(children, (child) =>
+    React.cloneElement(child, { setCurrentTitle })
+  );
+
   return (
     <div className={styles.pageContainer}>
-      <Navbar />
-      <main className={styles.contentContainer}>{children}</main>
-      {/* <Footer /> */}
+      <Navbar currentTitle={currentTitle} plays={plays} />
+      <main className={styles.contentContainer}>{childrenWithProps}</main>
     </div>
   );
 };
 
-export default appWithTranslation(Layout);
+export default Layout;

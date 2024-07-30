@@ -4,5 +4,9 @@
   "terms": "AGB",
   "legal": "Impressum",
   "menu": "Menü",
-  "close": "Schließen"
+  "close": "Schließen",
+  "back": "Zurück",
+  "production_director": "Regie und Produktionsleitung",
+  "artistic_supervision": "Künstlerische Begleitung",
+  "musical_director": "Musikalische Leitung"
 }

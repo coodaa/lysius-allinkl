@@ -1,13 +1,11 @@
-// src/components/Navbar.js
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import styles from "../styles/Navbar.module.css";
 
-const Navbar = () => {
+const Navbar = ({ currentTitle, plays }) => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [plays, setPlays] = useState([]);
   const router = useRouter();
   const { t, i18n } = useTranslation("common");
 
@@ -51,27 +49,13 @@ const Navbar = () => {
 
   useEffect(() => {
     console.log("Current locale:", i18n.language);
-    const fetchData = async () => {
-      try {
-        const res = await fetch("/api/plays");
-        if (res.ok) {
-          const data = await res.json();
-          setPlays(data || []);
-        } else {
-          console.error("Failed to fetch plays:", res.status);
-        }
-      } catch (error) {
-        console.error("Error fetching plays:", error);
-      }
-    };
-    fetchData();
   }, [i18n.language]);
 
   return (
     <header className={styles.navbar}>
       <div className={styles.logo}>
         <Link href="/" legacyBehavior>
-          <a>LYSIUS</a>
+          <a>{currentTitle}</a>
         </Link>
       </div>
       <div className={styles.menuButton} onClick={toggleMenu}>

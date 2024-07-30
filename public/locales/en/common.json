@@ -4,5 +4,9 @@
   "terms": "Terms",
   "legal": "Legal notice",
   "menu": "Menu",
-  "close": "Close"
+  "close": "Close",
+  "back": "Back",
+  "production_director": "Production Director",
+  "artistic_supervision": "Artistic Supervision",
+  "musical_director": "Musical Director"
 }
