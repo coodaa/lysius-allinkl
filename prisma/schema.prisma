@@ -8,12 +8,29 @@ generator client {
 }
 
 model Play {
-  id          Int      @id @default(autoincrement())
-  title       String
-  description String?
-  imageUrl    String?
-  videoUrl    String?
+  id                       Int      @id @default(autoincrement())
+  title                    String
+  description              String?
+  imageUrl                 String?
+  videoUrl                 String?
+  subtitle                 String?
+  productionDirector       String?
+  artisticSupervision      String?
+  musicalDirector          String?
+  regie                    String?
+  produktion               String?
+  kuenstlerischeBegleitung String?
+  musikalischeLeitung      String?
+  mit                      String?
+  sopranistin              String?
+  sopranist                String?
+  bass                     String?
+  chor                     String?
+  orchester                String?
+  foerderung               String?
 }
+
+
 
 model landingpageimg {
   id    Int    @id @default(autoincrement())

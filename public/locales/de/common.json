@@ -5,8 +5,22 @@
   "legal": "Impressum",
   "menu": "Menü",
   "close": "Schließen",
-  "back": "Zurück",
-  "production_director": "Regie und Produktionsleitung",
-  "artistic_supervision": "Künstlerische Begleitung",
-  "musical_director": "Musikalische Leitung"
+
+    "back": "Zurück",
+    "production_director": "Produktionsleiter",
+    "artistic_supervision": "Künstlerische Betreuung",
+    "musical_director": "Musikalische Leitung",
+    "regie": "Regie",
+    "produktion": "Produktion",
+    "kuenstlerische_begleitung": "Künstlerische Begleitung",
+    "musikalische_leitung": "Musikalische Leitung",
+    "mit": "Mit",
+    "sopranistin": "Sopranistin",
+    "sopranist": "Sopranist",
+    "bass": "Bass",
+    "chor": "Chor",
+    "orchester": "Orchester",
+    "foerderung": "Förderung"
+
+
 }
