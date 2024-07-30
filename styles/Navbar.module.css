@@ -63,8 +63,7 @@
   padding: 0;
   margin: 0;
   font-weight: bold !important;
-  text-align: left; /* Text linksbündig ausrichten */
-  margin-top: 4rem;
+  margin-top: 1em;
 }
 
 .navList li {
@@ -118,6 +117,41 @@
 .footerItem {
   margin: 0;
 }
+
+.languageSwitch {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.languageLink {
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+}
+
+.languageLink:hover,
+.languageLink.active {
+  text-decoration: underline;
+}
+
+/* styles/Navbar.module.css */
+.link {
+  display: block;
+  padding: 1rem;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  text-align: left;
+}
+
+.link:hover {
+  background-color: #f0f0f0;
+}
+
+.link.active {
+  text-decoration: underline; /* or any other style to highlight the active link */
+}
+
 
 /* Für Desktop-Version */
 @media (min-width: 600px) {

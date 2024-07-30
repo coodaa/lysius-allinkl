@@ -36,3 +36,8 @@ a {
 a:hover {
   text-decoration: underline; /* Unterstreicht den Link beim Hover */
 }
+
+/* global.css */
+.active {
+  text-decoration: underline;
+}

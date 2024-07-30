@@ -6,7 +6,13 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          {/* Füge hier Meta-Tags oder andere globale Kopfzeilen-Elemente hinzu */}
+          <meta name="description" content="Your website description" />
+          <meta charSet="UTF-8" />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          />
+          <link rel="icon" href="/favicon.ico" />
         </Head>
         <body>
           <Main />

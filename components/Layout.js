@@ -1,6 +1,7 @@
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import styles from "../styles/Layout.module.css";
+import { appWithTranslation } from "next-i18next";
 
 const Layout = ({ children }) => {
   return (
@@ -12,4 +13,4 @@ const Layout = ({ children }) => {
   );
 };
 
-export default Layout;
+export default appWithTranslation(Layout);
