@@ -7,12 +7,28 @@ generator client {
   provider = "prisma-client-js"
 }
 
+model landingpageimg {
+  id    Int    @id @default(autoincrement())
+  url   String
+  name  String
+}
+
+model PlayImages {
+  id       Int    @id @default(autoincrement())
+  playId   Int
+  imageUrl String
+  play     Play   @relation(fields: [playId], references: [id])
+
+  @@index([playId], name: "playId")
+}
+
 model Play {
   id                       Int      @id @default(autoincrement())
   title                    String
   description              String?
   imageUrl                 String?
   videoUrl                 String?
+  image                    Bytes?
   subtitle                 String?
   productionDirector       String?
   artisticSupervision      String?
@@ -28,12 +44,15 @@ model Play {
   chor                     String?
   orchester                String?
   foerderung               String?
-}
-
-
-
-model landingpageimg {
-  id    Int    @id @default(autoincrement())
-  url   String
-  name  String
+  imageUrl1                String?
+  imageUrl2                String?
+  imageUrl3                String?
+  imageUrl4                String?
+  imageUrl5                String?
+  imageUrl6                String?
+  imageUrl7                String?
+  imageUrl8                String?
+  imageUrl9                String?
+  imageUrl10               String?
+  images                   PlayImages[]
 }
