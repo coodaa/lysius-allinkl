@@ -1,3 +1,4 @@
+// src/components/Navbar.js
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -98,10 +99,10 @@ const Navbar = () => {
           }`}
         >
           <li className={styles.footerItem} onClick={handleLinkClick}>
-            <Link href="/mitglieder" legacyBehavior>
+            <Link href="/members" legacyBehavior>
               <a
                 className={`${styles.link} ${
-                  router.pathname === "/mitglieder" ? styles.active : ""
+                  router.pathname === "/members" ? styles.active : ""
                 }`}
               >
                 {t("members")}
@@ -109,10 +110,10 @@ const Navbar = () => {
             </Link>
           </li>
           <li onClick={handleLinkClick}>
-            <Link href="/agb" legacyBehavior>
+            <Link href="/terms" legacyBehavior>
               <a
                 className={`${styles.link} ${
-                  router.pathname === "/agb" ? styles.active : ""
+                  router.pathname === "/terms" ? styles.active : ""
                 }`}
               >
                 {t("terms")}
@@ -120,13 +121,13 @@ const Navbar = () => {
             </Link>
           </li>
           <li onClick={handleLinkClick}>
-            <Link href="/impressum" legacyBehavior>
+            <Link href="/legal" legacyBehavior>
               <a
                 className={`${styles.link} ${
-                  router.pathname === "/impressum" ? styles.active : ""
+                  router.pathname === "/legal" ? styles.active : ""
                 }`}
               >
-                {t("impressum")}
+                {t("legal")}
               </a>
             </Link>
           </li>

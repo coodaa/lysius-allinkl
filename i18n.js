@@ -1,14 +1,11 @@
-const NextI18Next = require("next-i18next").default;
-const path = require("path");
+// src/i18n.js
+import NextI18Next from "next-i18next";
 
 const NextI18NextInstance = new NextI18Next({
   defaultLanguage: "de",
   otherLanguages: ["en"],
-  localePath:
-    typeof window === "undefined"
-      ? path.resolve("./public/locales")
-      : "/locales",
+  localePath: typeof window === "undefined" ? "public/locales" : "/locales",
 });
 
-module.exports = NextI18NextInstance;
-module.exports.default = NextI18NextInstance;
+export default NextI18NextInstance;
+export const { appWithTranslation, withTranslation } = NextI18NextInstance;

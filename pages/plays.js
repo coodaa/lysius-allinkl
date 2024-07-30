@@ -1,4 +1,7 @@
-export async function getServerSideProps(context) {
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
+
+export async function getServerSideProps({ locale }) {
   console.log("getServerSideProps called"); // Debugging-Ausgabe
 
   const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
@@ -28,17 +31,20 @@ export async function getServerSideProps(context) {
   return {
     props: {
       plays,
+      ...(await serverSideTranslations(locale, ["common"])),
     },
   };
 }
 
 export default function Home({ plays }) {
+  const { t } = useTranslation("common");
+
   console.log("Rendering Home component"); // Debugging-Ausgabe
   console.log("Hello World from Home component"); // Debugging-Ausgabe
 
   return (
     <div>
-      <h1>Theaterstücke</h1>
+      <h1>{t("theater_pieces")}</h1>
       <ul>
         {plays.map((play) => (
           <li key={play.id}>
