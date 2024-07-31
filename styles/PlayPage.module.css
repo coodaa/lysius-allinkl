@@ -38,6 +38,13 @@
   background-color: black;
   padding: 0.5rem 1rem;
   display: inline-block;
+  max-width: 70vw;
+  line-height: 1.5;
+  word-wrap: break-word;
+  white-space: normal;
+  margin-bottom: 0.5rem;
+  border-bottom: 0.2rem solid black; /* Schwarzer Rand unten */
+  margin-top: 0.5rem; /* Abstand oben */
 }
 
 .details {
