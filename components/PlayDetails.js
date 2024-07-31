@@ -82,7 +82,13 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
       </div>
       <div className={styles.contentContainer}>
         <h1 className={styles.title}>{play.title}</h1>
-        <p className={styles.subtitle}>{play.subtitle}</p>
+        <p className={styles.subtitle}>
+          {play.subtitle
+            ? play.subtitle.split(" ").map((word, index) => (
+                <span key={index}>{word} </span>
+              ))
+            : ""}
+        </p>
         <div className={styles.details}>
           {play.productionDirector && (
             <>

@@ -1,9 +1,10 @@
-// src/components/Modal.js
 import React, { useState } from "react";
 import Image from "next/image";
+import { useTranslation } from "next-i18next";
 import styles from "../styles/Modal.module.css";
 
 const Modal = ({ images, initialIndex, onClose }) => {
+  const { t } = useTranslation("common");
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
 
   const handleNext = () => {
@@ -23,6 +24,11 @@ const Modal = ({ images, initialIndex, onClose }) => {
   return (
     <div className={styles.modalOverlay} onClick={onClose}>
       <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+        <div className={styles.closeButtonContainer}>
+          <button className={styles.closeButton} onClick={onClose}>
+            {t("close")}
+          </button>
+        </div>
         <button className={styles.prevButton} onClick={handlePrev}>
           {"<"}
         </button>
