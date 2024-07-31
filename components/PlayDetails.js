@@ -60,6 +60,11 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
     play.imageUrl10,
   ].filter(Boolean);
 
+  const videoUrl =
+    play.videoUrl
+      ?.replace("youtu.be/", "www.youtube.com/embed/")
+      .split("?")[0] || "";
+
   return (
     <div className={styles.pageContainer}>
       <div className={styles.imageContainer}>
@@ -84,9 +89,9 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
         <h1 className={styles.title}>{play.title}</h1>
         <p className={styles.subtitle}>
           {play.subtitle
-            ? play.subtitle.split(" ").map((word, index) => (
-                <span key={index}>{word} </span>
-              ))
+            ? play.subtitle
+                .split(" ")
+                .map((word, index) => <span key={index}>{word} </span>)
             : ""}
         </p>
         <div className={styles.details}>
@@ -175,6 +180,16 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
             </>
           )}
         </div>
+        {videoUrl && (
+          <div className={styles.videoContainer}>
+            <iframe
+              src={videoUrl}
+              frameBorder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
+        )}
         <div className={styles.carousel}>
           {images.map((image, index) => (
             <div

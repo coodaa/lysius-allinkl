@@ -49,7 +49,10 @@ const Navbar = ({ currentTitle, plays }) => {
     <header className={styles.navbar}>
       <div className={styles.logo}>
         <Link href="/" legacyBehavior>
-          <a>{displayTitle || "LYSIUS"}</a>
+          <a className={styles.titleLink}>
+            <span className={styles.title}>{displayTitle}</span>
+            <span className={styles.hoverTitle}>LYSIUS</span>
+          </a>
         </Link>
       </div>
       <div className={styles.menuButton} onClick={toggleMenu}>

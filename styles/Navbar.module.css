@@ -10,7 +10,7 @@
   z-index: 1000;
   background-color: white;
   font-weight: bold !important;
-  padding-bottom: .5em;
+  padding-bottom: 0.5em;
 }
 
 .navbar::after {
@@ -43,10 +43,19 @@
   color: black;
   font-size: 1.8rem;
   font-weight: bold;
+  position: relative;
 }
 
-.logo a:hover {
-  text-decoration: underline;
+.logo .hoverTitle {
+  display: none;
+}
+
+.logo .titleLink:hover .title {
+  display: none;
+}
+
+.logo .titleLink:hover .hoverTitle {
+  display: inline;
 }
 
 .menuButton:hover {
