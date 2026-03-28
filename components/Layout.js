@@ -27,10 +27,9 @@ const Layout = ({ children }) => {
   }, []);
 
   const childrenWithProps = React.Children.map(children, (child) =>
-    React.cloneElement(child, {
-      setCurrentTitle,
-      setIsModalOpen,
-    })
+    React.isValidElement(child)
+      ? React.cloneElement(child, { setCurrentTitle, setIsModalOpen })
+      : child
   );
 
   return (

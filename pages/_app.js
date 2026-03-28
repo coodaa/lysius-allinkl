@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { appWithTranslation } from "next-i18next";
 import "../styles/global.css";
 import Layout from "../components/Layout";
@@ -7,9 +8,14 @@ function MyApp({ Component, pageProps }) {
   const router = useRouter();
 
   return (
-    <Layout>
-      <Component {...pageProps} key={router.asPath} />
-    </Layout>
+    <>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </Head>
+      <Layout>
+        <Component {...pageProps} key={router.asPath} />
+      </Layout>
+    </>
   );
 }
 

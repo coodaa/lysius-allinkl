@@ -7,21 +7,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model landingpageimg {
-  id             Int     @id @default(autoincrement())
-  url            String  @db.VarChar(255)
-  name           String  @db.VarChar(255)
-  metadata       String? @db.LongText
-  mobileImageUrl String? @db.VarChar(255)
-  description    String? @db.VarChar(255)
-}
-
-model News {
-  id      Int     @id @default(autoincrement())
-  news_de String? @db.Text
-  news_en String? @db.Text
-}
-
 model About {
   id            Int     @id @default(autoincrement())
   textField1    String? @db.Text
@@ -36,12 +21,32 @@ model About {
   textField5_en String? @db.Text
 }
 
+model Contact {
+  id          Int     @id @default(autoincrement())
+  position_de String? @db.VarChar(255)
+  position_en String? @db.VarChar(255)
+  name        String? @db.VarChar(255)
+}
+
 model Legal {
   id         Int      @id @default(autoincrement())
   type       String   @db.VarChar(100)
   content    String?  @db.Text
   content_en String?  @db.Text
   createdAt  DateTime @default(now()) @db.Timestamp(0)
+}
+
+model Members {
+  id          Int     @id @default(autoincrement())
+  position_de String? @db.VarChar(255)
+  position_en String? @db.VarChar(255)
+  name        String? @db.VarChar(255)
+}
+
+model News {
+  id      Int     @id @default(autoincrement())
+  news_de String? @db.Text
+  news_en String? @db.Text
 }
 
 model Play {
@@ -246,18 +251,13 @@ model Play {
   @@index([topMobileImage1(length: 768)], map: "topMobileImage1_2")
 }
 
-model Contact {
-  id          Int     @id @default(autoincrement())
-  position_de String? @db.VarChar(255)
-  position_en String? @db.VarChar(255)
-  name        String? @db.VarChar(255)
-}
-
-model Members {
-  id          Int     @id @default(autoincrement())
-  position_de String? @db.VarChar(255)
-  position_en String? @db.VarChar(255)
-  name        String? @db.VarChar(255)
+model landingpageimg {
+  id             Int     @id @default(autoincrement())
+  url            String  @db.VarChar(255)
+  name           String  @db.VarChar(255)
+  metadata       String? @db.LongText
+  mobileImageUrl String? @db.VarChar(255)
+  description    String? @db.VarChar(255)
 }
 
 model newsletter {

@@ -1,18 +1,68 @@
 import React from "react";
+import Head from "next/head";
+import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import PlayDetails from "../../components/PlayDetails";
 import prisma from "../../lib/prisma";
 
+const BASE_URL = "https://www.lysius.org";
+
 const PlayPage = ({ play, setCurrentTitle }) => {
-  return <PlayDetails play={play} setCurrentTitle={setCurrentTitle} />;
+  const { locale } = useRouter();
+  if (!play) return null;
+
+  const title = (locale === "en" ? play.title_en : play.title) || play.title || "Lysius";
+  const description = (
+    (locale === "en" ? play.descriptionleft1_en : play.descriptionleft1) || ""
+  ).slice(0, 160) || "Theaterstück von Lysius – Interweaving performance cultures";
+  const ogImage =
+    play.topImage1 ||
+    play.imageUrl1 ||
+    "https://res.cloudinary.com/dmpiogwyy/image/upload/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg";
+  const canonicalUrl = `${BASE_URL}/plays/${play.id}`;
+
+  return (
+    <>
+      <Head>
+        <title>{title} – Lysius</title>
+        <meta name="description" content={description} />
+        <link rel="canonical" href={canonicalUrl} />
+
+        {/* hreflang für DE/EN */}
+        <link rel="alternate" hrefLang="de" href={`${BASE_URL}/plays/${play.id}`} />
+        <link rel="alternate" hrefLang="en" href={`${BASE_URL}/en/plays/${play.id}`} />
+        <link rel="alternate" hrefLang="x-default" href={`${BASE_URL}/plays/${play.id}`} />
+
+        {/* Open Graph */}
+        <meta property="og:title" content={`${title} – Lysius`} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={ogImage} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:type" content="article" />
+        <meta property="og:site_name" content="Lysius" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`${title} – Lysius`} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={ogImage} />
+      </Head>
+      <PlayDetails play={play} setCurrentTitle={setCurrentTitle} />
+    </>
+  );
 };
 
 export async function getServerSideProps(context) {
   const { id } = context.params;
+  const numericId = parseInt(id, 10);
+
+  if (isNaN(numericId)) {
+    return { notFound: true };
+  }
 
   try {
     const play = await prisma.play.findUnique({
-      where: { id: parseInt(id) },
+      where: { id: numericId },
       select: {
         id: true,
         title: true,

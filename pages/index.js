@@ -4,9 +4,7 @@ import { useTranslation } from "next-i18next";
 import NextImage from "next/image";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import prisma from "../lib/prisma";
 
 export async function getServerSideProps({ locale }) {
   let images = [];
@@ -16,9 +14,7 @@ export async function getServerSideProps({ locale }) {
     // Fetch images from the landingpageimg table
     images = await prisma.landingpageimg.findMany();
 
-    // Fetch the first news entry from the News table
     news = await prisma.News.findFirst();
-    console.log("Fetched news:", news);
   } catch (error) {
     console.error("Error fetching data from database:", error);
   }

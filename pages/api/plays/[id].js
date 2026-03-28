@@ -1,16 +1,16 @@
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import prisma from "../../../lib/prisma";
 
 export default async function handler(req, res) {
   const { id } = req.query;
+  const numericId = parseInt(id, 10);
+
+  if (isNaN(numericId)) {
+    return res.status(400).json({ error: "Invalid id" });
+  }
 
   try {
     const play = await prisma.play.findUnique({
-      where: { id: parseInt(id) },
-      include: {
-        images: true,
-      },
+      where: { id: numericId },
     });
 
     if (!play) {

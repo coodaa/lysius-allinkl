@@ -41,8 +41,8 @@ const Modal = ({ images, initialIndex, onClose }) => {
           <Image
             src={images[currentIndex]}
             alt={`Bild ${currentIndex + 1}`}
-            layout="fill"
-            objectFit="contain"
+            fill
+            style={{ objectFit: "contain" }}
             className={styles.modalImage}
           />
           <button className={styles.arrowLeft} onClick={handlePrev}>

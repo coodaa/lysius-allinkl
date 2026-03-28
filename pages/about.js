@@ -1,11 +1,8 @@
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { PrismaClient } from "@prisma/client";
 import Head from "next/head";
-import styles from "../styles/AboutPage.module.css"; // Importiere das angepasste CSS
-
-// Prisma Client initialisieren
-const prisma = new PrismaClient();
+import styles from "../styles/AboutPage.module.css";
+import prisma from "../lib/prisma";
 
 const AboutPage = ({ aboutData, contactData, membersData, newsletterData }) => {
   const { t, i18n } = useTranslation("common");

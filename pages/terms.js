@@ -1,11 +1,9 @@
 // pages/terms.js
-import { PrismaClient } from "@prisma/client";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import Head from "next/head"; // Meta-Tags hinzufügen
+import Head from "next/head";
 import styles from "../styles/LegalPage.module.css";
-
-const prisma = new PrismaClient();
+import prisma from "../lib/prisma";
 
 const TermsPage = ({ legalData }) => {
   const { t, i18n } = useTranslation("common");
@@ -20,6 +18,7 @@ const TermsPage = ({ legalData }) => {
     <>
       <Head>
         <title>{t("privacy_policy")} | Lysius</title>
+        <meta name="robots" content="noindex, nofollow" />
         <meta name="description" content={t("privacy_policy_description")} />
         <meta property="og:title" content={`${t("privacy_policy")} | Lysius`} />
         <meta
