@@ -55,7 +55,13 @@ const AboutPage = ({ aboutData, contactData, membersData, newsletterData }) => {
                   membersData.map((member, index) => (
                     <p key={index}>
                       {isEnglish ? member.position_en : member.position_de}:{" "}
-                      {member.name}
+                      {member.position_de === "Programmierung" ? (
+                        <a href="https://www.coodaa.de" target="_blank" rel="noopener noreferrer">
+                          coodaa
+                        </a>
+                      ) : (
+                        member.name
+                      )}
                     </p>
                   ))
                 ) : (
