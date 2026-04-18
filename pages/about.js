@@ -11,17 +11,80 @@ const AboutPage = ({ aboutData, contactData, membersData, newsletterData }) => {
   return (
     <>
       <Head>
-        <title>{t("about_title")}</title>
-        <meta name="description" content={t("about_description")} />
+        <title>{isEnglish ? "About – Lysius" : "Über uns – Lysius"}</title>
+        <meta
+          name="description"
+          content={
+            isEnglish
+              ? "Lysius is a cultural association for theatre, music and intercultural dialogue. Director: Fabiane Kemmann."
+              : "Lysius ist ein Kulturverein für Theater, Musik und interkulturelle Verständigung. Leitung: Fabiane Kemmann."
+          }
+        />
         <meta
           name="keywords"
-          content="Lysius, Kultur, Kunst, Theater, Musik, Völkerverständigung, Wissenschaft"
+          content="Lysius, Fabiane Kemmann, Kultur, Kunst, Theater, Musik, Völkerverständigung, Wissenschaft, Kulturverein Berlin"
         />
-        <meta property="og:title" content={t("about_title")} />
-        <meta property="og:description" content={t("about_og_description")} />
+        <link rel="canonical" href="https://www.lysius.org/about" />
+        <link rel="alternate" hrefLang="de" href="https://www.lysius.org/about" />
+        <link rel="alternate" hrefLang="en" href="https://www.lysius.org/en/about" />
+        <link rel="alternate" hrefLang="x-default" href="https://www.lysius.org/about" />
+        <meta
+          property="og:title"
+          content={isEnglish ? "About – Lysius" : "Über uns – Lysius"}
+        />
+        <meta
+          property="og:description"
+          content={
+            isEnglish
+              ? "Lysius is a cultural association for theatre, music and intercultural dialogue. Director: Fabiane Kemmann."
+              : "Lysius ist ein Kulturverein für Theater, Musik und interkulturelle Verständigung. Leitung: Fabiane Kemmann."
+          }
+        />
         <meta
           property="og:image"
           content="https://res.cloudinary.com/dmpiogwyy/image/upload/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg"
+        />
+        <meta property="og:url" content="https://www.lysius.org/about" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Lysius" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content={isEnglish ? "About – Lysius" : "Über uns – Lysius"}
+        />
+        <meta
+          name="twitter:description"
+          content={
+            isEnglish
+              ? "Lysius is a cultural association for theatre, music and intercultural dialogue. Director: Fabiane Kemmann."
+              : "Lysius ist ein Kulturverein für Theater, Musik und interkulturelle Verständigung. Leitung: Fabiane Kemmann."
+          }
+        />
+        <meta
+          name="twitter:image"
+          content="https://res.cloudinary.com/dmpiogwyy/image/upload/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg"
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Lysius",
+              url: "https://www.lysius.org",
+              description: isEnglish
+                ? "Cultural association for theatre, music and intercultural dialogue"
+                : "Kulturverein für Theater, Musik und interkulturelle Verständigung",
+              member: [
+                {
+                  "@type": "Person",
+                  name: "Fabiane Kemmann",
+                  jobTitle: isEnglish ? "Director" : "Leitung",
+                  url: "https://www.lysius.org/about",
+                },
+              ],
+            }),
+          }}
         />
       </Head>
 

@@ -64,16 +64,48 @@ const HomePage = ({ images, news }) => {
         <title>Lysius</title>
         <meta
           name="description"
-          content="Der gemeinnützige Verein Lysius e.V. verbindet seit 2019 eine Initiative von Kulturschaffenden."
+          content={
+            i18n.language === "en"
+              ? "Lysius e.V. – a Berlin-based cultural association for theatre, music and intercultural dialogue, founded in 2019."
+              : "Lysius e.V. – ein Berliner Kulturverein für Theater, Musik und interkulturelle Verständigung, gegründet 2019."
+          }
         />
-        <meta name="keywords" content="Lysius, Kultur, Kunst, Theater, Musik" />
+        <meta
+          name="keywords"
+          content="Lysius, Lysius e.V., Kultur, Kunst, Theater, Musik, Berlin, Kulturverein, Fabiane Kemmann"
+        />
+        <link rel="canonical" href="https://www.lysius.org/" />
+        <link rel="alternate" hrefLang="de" href="https://www.lysius.org/" />
+        <link rel="alternate" hrefLang="en" href="https://www.lysius.org/en" />
+        <link rel="alternate" hrefLang="x-default" href="https://www.lysius.org/" />
         <meta property="og:title" content="Lysius e.V." />
         <meta
           property="og:description"
-          content="Eine Initiative von Kulturschaffenden in Musik, Theater und Gesellschaft."
+          content={
+            i18n.language === "en"
+              ? "Lysius e.V. – a Berlin-based cultural association for theatre, music and intercultural dialogue."
+              : "Lysius e.V. – ein Berliner Kulturverein für Theater, Musik und interkulturelle Verständigung."
+          }
         />
         <meta
           property="og:image"
+          content="https://res.cloudinary.com/dmpiogwyy/image/upload/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg"
+        />
+        <meta property="og:url" content="https://www.lysius.org/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Lysius" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Lysius e.V." />
+        <meta
+          name="twitter:description"
+          content={
+            i18n.language === "en"
+              ? "Lysius e.V. – a Berlin-based cultural association for theatre, music and intercultural dialogue."
+              : "Lysius e.V. – ein Berliner Kulturverein für Theater, Musik und interkulturelle Verständigung."
+          }
+        />
+        <meta
+          name="twitter:image"
           content="https://res.cloudinary.com/dmpiogwyy/image/upload/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg"
         />
 

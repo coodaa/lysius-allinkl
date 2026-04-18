@@ -39,27 +39,36 @@ export default function Home({ plays }) {
   return (
     <>
       <Head>
-        <title>Theaterstücke | Lysius</title>
+        <title>{t("theater_pieces")} | Lysius</title>
         <meta
           name="description"
-          content="Eine Liste von Theaterstücken präsentiert vom Lysius e.V."
+          content="Theaterstücke von Lysius e.V. – Produktionen für Theater, Musik und interkulturelle Verständigung in Berlin."
         />
-        <meta property="og:title" content="Theaterstücke | Lysius" />
+        <meta
+          name="keywords"
+          content="Lysius, Theaterstücke, Theater Berlin, Kulturverein, Fabiane Kemmann, Musik, Kunst"
+        />
+        <link rel="canonical" href="https://www.lysius.org/plays" />
+        <link rel="alternate" hrefLang="de" href="https://www.lysius.org/plays" />
+        <link rel="alternate" hrefLang="en" href="https://www.lysius.org/en/plays" />
+        <link rel="alternate" hrefLang="x-default" href="https://www.lysius.org/plays" />
+        <meta property="og:title" content={`${t("theater_pieces")} | Lysius`} />
         <meta
           property="og:description"
-          content="Eine Übersicht der neuesten Theaterstücke."
+          content="Theaterstücke von Lysius e.V. – Produktionen für Theater, Musik und interkulturelle Verständigung."
         />
         <meta
           property="og:image"
           content="https://res.cloudinary.com/dmpiogwyy/image/upload/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg"
         />
-        <meta property="og:url" content="https://www.lysius.org/" />
+        <meta property="og:url" content="https://www.lysius.org/plays" />
         <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Lysius" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Theaterstücke | Lysius" />
+        <meta name="twitter:title" content={`${t("theater_pieces")} | Lysius`} />
         <meta
           name="twitter:description"
-          content="Eine Übersicht der neuesten Theaterstücke."
+          content="Theaterstücke von Lysius e.V. – Produktionen für Theater, Musik und interkulturelle Verständigung."
         />
         <meta
           name="twitter:image"
