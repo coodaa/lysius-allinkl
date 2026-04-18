@@ -33,7 +33,7 @@ export default class MyDocument extends Document {
           />
           <meta
             property="og:image"
-            content="https://res.cloudinary.com/dmpiogwyy/image/upload/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg"
+            content="https://res.cloudinary.com/dmpiogwyy/image/upload/f_auto,q_auto/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg"
           />
           <meta property="og:image:width" content="1200" />
           <meta property="og:image:height" content="627" />
@@ -50,7 +50,7 @@ export default class MyDocument extends Document {
           />
           <meta
             name="twitter:image"
-            content="https://res.cloudinary.com/dmpiogwyy/image/upload/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg"
+            content="https://res.cloudinary.com/dmpiogwyy/image/upload/f_auto,q_auto/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg"
           />
         </Head>
         <body>

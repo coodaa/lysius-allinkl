@@ -1,7 +1,8 @@
 // pages/api/landingpageimg.js
 import prisma from "../../lib/prisma";
+import { withMiddleware } from "../../lib/apiMiddleware";
 
-export default async function handler(req, res) {
+async function handler(req, res) {
   try {
     const images = await prisma.landingpageimg.findMany();
     res.status(200).json(images);
@@ -10,3 +11,5 @@ export default async function handler(req, res) {
     res.status(500).json({ error: "Error fetching images", details: error.message });
   }
 }
+
+export default withMiddleware(handler);

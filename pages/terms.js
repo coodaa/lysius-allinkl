@@ -29,7 +29,7 @@ const TermsPage = ({ legalData }) => {
         <meta property="og:type" content="website" />
         <meta
           property="og:image"
-          content="https://res.cloudinary.com/dmpiogwyy/image/upload/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg"
+          content="https://res.cloudinary.com/dmpiogwyy/image/upload/f_auto,q_auto/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg"
         />
         <meta name="twitter:card" content="summary_large_image" />
         <meta
@@ -42,7 +42,7 @@ const TermsPage = ({ legalData }) => {
         />
         <meta
           name="twitter:image"
-          content="https://res.cloudinary.com/dmpiogwyy/image/upload/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg"
+          content="https://res.cloudinary.com/dmpiogwyy/image/upload/f_auto,q_auto/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg"
         />
       </Head>
 

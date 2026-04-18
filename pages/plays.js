@@ -2,26 +2,21 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import Head from "next/head";
 import Image from "next/image";
+import prisma from "../lib/prisma";
 
 export async function getServerSideProps({ locale }) {
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
   let plays = [];
 
   try {
-    const res = await fetch(`${apiUrl}/api/plays`);
-    if (res.ok) {
-      plays = await res.json();
-      plays = plays.map((play) => ({
-        ...play,
-        videoUrl: play.videoUrl
-          ? play.videoUrl
-              .replace("youtu.be/", "youtube.com/embed/")
-              .replace("watch?v=", "embed/")
-          : "",
-      }));
-    } else {
-      console.error("Failed to fetch plays:", res.status);
-    }
+    const raw = await prisma.play.findMany();
+    plays = raw.map((play) => ({
+      ...play,
+      videoUrl: play.videoUrl
+        ? play.videoUrl
+            .replace("youtu.be/", "youtube.com/embed/")
+            .replace("watch?v=", "embed/")
+        : "",
+    }));
   } catch (error) {
     console.error("Error fetching plays:", error);
   }
@@ -60,7 +55,7 @@ export default function Home({ plays }) {
         />
         <meta
           property="og:image"
-          content="https://res.cloudinary.com/dmpiogwyy/image/upload/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg"
+          content="https://res.cloudinary.com/dmpiogwyy/image/upload/f_auto,q_auto/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg"
         />
         <meta property="og:url" content="https://www.lysius.org/plays" />
         <meta property="og:type" content="website" />
@@ -75,7 +70,7 @@ export default function Home({ plays }) {
         />
         <meta
           name="twitter:image"
-          content="https://res.cloudinary.com/dmpiogwyy/image/upload/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg"
+          content="https://res.cloudinary.com/dmpiogwyy/image/upload/f_auto,q_auto/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg"
         />
 
         {/* JSON-LD: ItemList */}

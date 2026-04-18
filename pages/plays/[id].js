@@ -18,7 +18,7 @@ const PlayPage = ({ play, setCurrentTitle }) => {
   const ogImage =
     play.topImage1 ||
     play.imageUrl1 ||
-    "https://res.cloudinary.com/dmpiogwyy/image/upload/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg";
+    "https://res.cloudinary.com/dmpiogwyy/image/upload/f_auto,q_auto/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg";
   const canonicalUrl = `${BASE_URL}/plays/${play.id}`;
 
   return (

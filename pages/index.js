@@ -89,7 +89,7 @@ const HomePage = ({ images, news }) => {
         />
         <meta
           property="og:image"
-          content="https://res.cloudinary.com/dmpiogwyy/image/upload/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg"
+          content="https://res.cloudinary.com/dmpiogwyy/image/upload/f_auto,q_auto/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg"
         />
         <meta property="og:url" content="https://www.lysius.org/" />
         <meta property="og:type" content="website" />
@@ -108,7 +108,7 @@ const HomePage = ({ images, news }) => {
         />
         <meta
           name="twitter:image"
-          content="https://res.cloudinary.com/dmpiogwyy/image/upload/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg"
+          content="https://res.cloudinary.com/dmpiogwyy/image/upload/f_auto,q_auto/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg"
         />
 
         {/* Preload-Links für Bilder */}
@@ -134,7 +134,7 @@ const HomePage = ({ images, news }) => {
               "@type": "Organization",
               name: "Lysius e.V.",
               url: "https://www.lysius.org",
-              logo: "https://res.cloudinary.com/dmpiogwyy/image/upload/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg",
+              logo: "https://res.cloudinary.com/dmpiogwyy/image/upload/f_auto,q_auto/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg",
               description:
                 i18n.language === "en"
                   ? "Cultural association for theatre, music and intercultural dialogue, founded in 2019 in Berlin."

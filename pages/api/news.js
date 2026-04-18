@@ -1,8 +1,9 @@
 // pages/api/news.js
 
 import prisma from "../../lib/prisma";
+import { withMiddleware } from "../../lib/apiMiddleware";
 
-export default async function handler(req, res) {
+async function handler(req, res) {
   try {
     // Abrufen der ersten Zeile aus der News-Tabelle
     const news = await prisma.News.findFirst();
@@ -16,3 +17,5 @@ export default async function handler(req, res) {
     res.status(500).json({ error: "Failed to fetch news" });
   }
 }
+
+export default withMiddleware(handler);

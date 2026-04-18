@@ -1,6 +1,7 @@
 import prisma from "../../../lib/prisma";
+import { withMiddleware } from "../../../lib/apiMiddleware";
 
-export default async function handler(req, res) {
+async function handler(req, res) {
   const { id } = req.query;
   const numericId = parseInt(id, 10);
 
@@ -23,3 +24,5 @@ export default async function handler(req, res) {
     res.status(500).json({ error: "Error fetching play" });
   }
 }
+
+export default withMiddleware(handler);
