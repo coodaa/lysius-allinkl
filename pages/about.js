@@ -24,6 +24,7 @@ const AboutPage = ({ aboutData, contactData, membersData, newsletterData }) => {
           name="keywords"
           content="Lysius, Fabiane Kemmann, Kultur, Kunst, Theater, Musik, Völkerverständigung, Wissenschaft, Kulturverein Berlin"
         />
+        <meta name="author" content="Fabiane Kemmann" />
         <link rel="canonical" href="https://www.lysius.org/about" />
         <link rel="alternate" hrefLang="de" href="https://www.lysius.org/about" />
         <link rel="alternate" hrefLang="en" href="https://www.lysius.org/en/about" />
@@ -47,6 +48,8 @@ const AboutPage = ({ aboutData, contactData, membersData, newsletterData }) => {
         <meta property="og:url" content="https://www.lysius.org/about" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Lysius" />
+        <meta property="og:locale" content={isEnglish ? "en_US" : "de_DE"} />
+        <meta property="og:locale:alternate" content={isEnglish ? "de_DE" : "en_US"} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"

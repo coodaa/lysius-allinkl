@@ -18,6 +18,13 @@ export default class MyDocument extends Document {
             href="/apple-touch-icon.png"
           />
 
+          {/* Preconnect für schnelleres Laden externer Ressourcen */}
+          <link rel="preconnect" href="https://res.cloudinary.com" />
+          <link rel="dns-prefetch" href="https://res.cloudinary.com" />
+          <link rel="preconnect" href="https://img.youtube.com" />
+          <link rel="dns-prefetch" href="https://img.youtube.com" />
+          <link rel="preconnect" href="https://www.youtube.com" />
+
           {/* Open Graph Meta Tags for Rich Preview */}
           <meta property="og:title" content="Lysius" />
           <meta

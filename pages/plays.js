@@ -65,6 +65,8 @@ export default function Home({ plays }) {
         <meta property="og:url" content="https://www.lysius.org/plays" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Lysius" />
+        <meta property="og:locale" content="de_DE" />
+        <meta property="og:locale:alternate" content="en_US" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={`${t("theater_pieces")} | Lysius`} />
         <meta

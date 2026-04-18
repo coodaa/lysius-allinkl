@@ -94,6 +94,8 @@ const HomePage = ({ images, news }) => {
         <meta property="og:url" content="https://www.lysius.org/" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Lysius" />
+        <meta property="og:locale" content={i18n.language === "en" ? "en_US" : "de_DE"} />
+        <meta property="og:locale:alternate" content={i18n.language === "en" ? "de_DE" : "en_US"} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Lysius e.V." />
         <meta

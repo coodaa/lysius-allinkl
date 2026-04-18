@@ -40,6 +40,8 @@ const PlayPage = ({ play, setCurrentTitle }) => {
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:type" content="article" />
         <meta property="og:site_name" content="Lysius" />
+        <meta property="og:locale" content={locale === "en" ? "en_US" : "de_DE"} />
+        <meta property="og:locale:alternate" content={locale === "en" ? "de_DE" : "en_US"} />
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
