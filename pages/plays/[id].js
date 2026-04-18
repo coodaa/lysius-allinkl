@@ -46,6 +46,58 @@ const PlayPage = ({ play, setCurrentTitle }) => {
         <meta name="twitter:title" content={`${title} – Lysius`} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={ogImage} />
+
+        {/* JSON-LD: CreativeWork */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "CreativeWork",
+              name: title,
+              description: description,
+              image: ogImage,
+              url: canonicalUrl,
+              inLanguage: locale === "en" ? "en" : "de",
+              producer: {
+                "@type": "Organization",
+                name: "Lysius",
+                url: "https://www.lysius.org",
+              },
+            }),
+          }}
+        />
+
+        {/* JSON-LD: Breadcrumb */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                {
+                  "@type": "ListItem",
+                  position: 1,
+                  name: "Lysius",
+                  item: "https://www.lysius.org",
+                },
+                {
+                  "@type": "ListItem",
+                  position: 2,
+                  name: locale === "en" ? "Plays" : "Theaterstücke",
+                  item: `${BASE_URL}/plays`,
+                },
+                {
+                  "@type": "ListItem",
+                  position: 3,
+                  name: title,
+                  item: canonicalUrl,
+                },
+              ],
+            }),
+          }}
+        />
       </Head>
       <PlayDetails play={play} setCurrentTitle={setCurrentTitle} />
     </>

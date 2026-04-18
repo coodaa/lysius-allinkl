@@ -1,6 +1,7 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import Head from "next/head";
+import Image from "next/image";
 
 export async function getServerSideProps({ locale }) {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
@@ -74,6 +75,25 @@ export default function Home({ plays }) {
           name="twitter:image"
           content="https://res.cloudinary.com/dmpiogwyy/image/upload/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg"
         />
+
+        {/* JSON-LD: ItemList */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ItemList",
+              name: "Theaterstücke – Lysius",
+              url: "https://www.lysius.org/plays",
+              itemListElement: plays.map((play, index) => ({
+                "@type": "ListItem",
+                position: index + 1,
+                name: play.title,
+                url: `https://www.lysius.org/plays/${play.id}`,
+              })),
+            }),
+          }}
+        />
       </Head>
 
       <div>
@@ -84,11 +104,14 @@ export default function Home({ plays }) {
               <h2>{play.title}</h2>
               <p>{play.description}</p>
               {play.imageUrl && (
-                <img
-                  src={play.imageUrl}
-                  alt={play.title}
-                  loading="lazy" // Lazy loading for performance
-                />
+                <div style={{ position: "relative", width: "100%", height: "200px" }}>
+                  <Image
+                    src={play.imageUrl}
+                    alt={play.title || "Theaterstück"}
+                    fill
+                    style={{ objectFit: "cover" }}
+                  />
+                </div>
               )}
               {play.videoUrl && (
                 <div>

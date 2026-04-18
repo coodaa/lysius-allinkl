@@ -122,6 +122,39 @@ const HomePage = ({ images, news }) => {
             as="image"
           />
         ))}
+
+        {/* JSON-LD: Organization */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Lysius e.V.",
+              url: "https://www.lysius.org",
+              logo: "https://res.cloudinary.com/dmpiogwyy/image/upload/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg",
+              description:
+                i18n.language === "en"
+                  ? "Cultural association for theatre, music and intercultural dialogue, founded in 2019 in Berlin."
+                  : "Kulturverein für Theater, Musik und interkulturelle Verständigung, gegründet 2019 in Berlin.",
+              foundingDate: "2019",
+              areaServed: "Berlin",
+              contactPoint: {
+                "@type": "ContactPoint",
+                email: "kemmann@lysius.org",
+                contactType: "customer service",
+              },
+              member: [
+                {
+                  "@type": "Person",
+                  name: "Fabiane Kemmann",
+                  jobTitle: i18n.language === "en" ? "Director" : "Leitung",
+                },
+              ],
+              sameAs: ["https://www.lysius.org"],
+            }),
+          }}
+        />
       </Head>
 
       <div className={styles.container}>
@@ -161,10 +194,9 @@ const HomePage = ({ images, news }) => {
                       ? image.mobileImageUrl
                       : image.url
                   }
-                  alt={image.alt || `Image ${index + 1}`}
-                  layout="fill"
-                  objectFit="cover"
-                  objectPosition="top"
+                  alt={image.description || image.name || `Lysius – Bild ${index + 1}`}
+                  fill
+                  style={{ objectFit: "cover", objectPosition: "top" }}
                 />
               </div>
             ))}

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Image from "next/image";
 import styles from "../styles/CustomVideoPlayer.module.css";
 
 const CustomVideoPlayer = ({ videoUrl }) => {
@@ -18,9 +19,11 @@ const CustomVideoPlayer = ({ videoUrl }) => {
     <div className={styles.videoContainer}>
       {!isPlaying ? (
         <div className={styles.thumbnailContainer} onClick={handlePlayClick}>
-          <img
+          <Image
             src={thumbnailUrl}
             alt="Video thumbnail"
+            fill
+            style={{ objectFit: "cover" }}
             className={styles.thumbnail}
           />
           <div className={styles.playButtonOverlay}>

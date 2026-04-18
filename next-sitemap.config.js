@@ -1,9 +1,19 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: "https://www.lysius.org", // Deine Website-URL
+  siteUrl: "https://www.lysius.org",
   generateRobotsTxt: false,
-  sitemapSize: 7000, // Optionale Begrenzung der Anzahl von URLs pro Sitemap
-  changefreq: "weekly", // Gibt die Häufigkeit der Updates an
-  priority: 0.7, // Priorität der Seiten im Vergleich zu anderen
-  exclude: ["/admin/*"], // Seiten oder Pfade, die von der Sitemap ausgeschlossen werden sollen
+  sitemapSize: 7000,
+  changefreq: "weekly",
+  priority: 0.7,
+  exclude: ["/admin/*", "/en/legal", "/en/terms", "/legal", "/terms"],
+  alternateRefs: [
+    {
+      href: "https://www.lysius.org",
+      hreflang: "de",
+    },
+    {
+      href: "https://www.lysius.org/en",
+      hreflang: "en",
+    },
+  ],
 };
