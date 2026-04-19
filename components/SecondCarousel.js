@@ -56,8 +56,8 @@ const SecondCarousel = ({
             <Image
               src={image}
               alt={`Carousel image ${index + 1}`}
-              layout="fill"
-              objectFit="contain"
+              fill
+              style={{ objectFit: "contain" }}
               priority={index === 0}
             />
           </div>

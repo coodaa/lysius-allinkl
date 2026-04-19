@@ -51,6 +51,7 @@ model News {
 
 model Play {
   id                  Int     @id @default(autoincrement())
+  slug                String? @unique @db.VarChar(150)
   title               String? @db.VarChar(100)
   title_en            String? @db.VarChar(100)
   subtitle1           String? @db.VarChar(100)

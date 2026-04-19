@@ -2,9 +2,9 @@ import React from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import PlayDetails from "../../components/PlayDetails";
-import prisma from "../../lib/prisma";
-import { playSlug, slugify } from "../../lib/slugify";
+import PlayDetails from "../components/PlayDetails";
+import prisma from "../lib/prisma";
+import { playSlug } from "../lib/slugify";
 
 const BASE_URL = "https://www.lysius.org";
 
@@ -21,7 +21,7 @@ const PlayPage = ({ play, setCurrentTitle }) => {
     play.imageUrl1 ||
     "https://res.cloudinary.com/dmpiogwyy/image/upload/f_auto,q_auto/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg";
   const slug = playSlug(play);
-  const canonicalUrl = `${BASE_URL}/plays/${slug}`;
+  const canonicalUrl = `${BASE_URL}/${slug}`;
 
   return (
     <>
@@ -29,9 +29,9 @@ const PlayPage = ({ play, setCurrentTitle }) => {
         <title>{title} – Lysius</title>
         <meta name="description" content={description} />
         <link rel="canonical" href={canonicalUrl} />
-        <link rel="alternate" hrefLang="de" href={`${BASE_URL}/plays/${slug}`} />
-        <link rel="alternate" hrefLang="en" href={`${BASE_URL}/en/plays/${slug}`} />
-        <link rel="alternate" hrefLang="x-default" href={`${BASE_URL}/plays/${slug}`} />
+        <link rel="alternate" hrefLang="de" href={`${BASE_URL}/${slug}`} />
+        <link rel="alternate" hrefLang="en" href={`${BASE_URL}/en/${slug}`} />
+        <link rel="alternate" hrefLang="x-default" href={`${BASE_URL}/${slug}`} />
         <meta property="og:title" content={`${title} – Lysius`} />
         <meta property="og:description" content={description} />
         <meta property="og:image" content={ogImage} />
@@ -67,8 +67,7 @@ const PlayPage = ({ play, setCurrentTitle }) => {
               "@type": "BreadcrumbList",
               itemListElement: [
                 { "@type": "ListItem", position: 1, name: "Lysius", item: "https://www.lysius.org" },
-                { "@type": "ListItem", position: 2, name: locale === "en" ? "Plays" : "Theaterstücke", item: `${BASE_URL}/plays` },
-                { "@type": "ListItem", position: 3, name: title, item: canonicalUrl },
+                { "@type": "ListItem", position: 2, name: title, item: canonicalUrl },
               ],
             }),
           }}
@@ -84,13 +83,8 @@ export async function getServerSideProps(context) {
   if (!slug) return { notFound: true };
 
   try {
-    // Alle Titel holen und per Slug abgleichen
-    const allPlays = await prisma.play.findMany({ select: { id: true, title: true } });
-    const match = allPlays.find((p) => slugify(p.title || "") === slug);
-    if (!match) return { notFound: true };
-
-    const play = await prisma.play.findUnique({
-      where: { id: match.id },
+    const play = await prisma.play.findFirst({
+      where: { slug },
       select: {
         id: true,
         title: true, title_en: true,
@@ -159,9 +153,11 @@ export async function getServerSideProps(context) {
 
     if (!play) return { notFound: true };
 
+    const serializedPlay = JSON.parse(JSON.stringify(play));
+
     return {
       props: {
-        play,
+        play: serializedPlay,
         ...(await serverSideTranslations(context.locale, ["common"])),
       },
     };

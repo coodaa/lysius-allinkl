@@ -48,7 +48,7 @@ const Navbar = ({ currentTitle, plays = [] }) => {
   };
 
   const getDisplayTitle = () => {
-    if (router.pathname.startsWith("/plays/")) {
+    if (router.pathname === "/[slug]") {
       if (typeof window !== "undefined" && window.innerWidth <= 767) {
         return currentTitle.split(" - ")[0];
       }
@@ -95,12 +95,12 @@ const Navbar = ({ currentTitle, plays = [] }) => {
                 <li key={play.id} onClick={handleLinkClick}>
                   <span
                     className={`${styles.link} ${
-                      router.asPath === `/plays/${playSlug(play)}`
+                      router.asPath === `/${play.slug || playSlug(play)}`
                         ? styles.active
                         : ""
                     }`}
                     onClick={() =>
-                      router.push(`/plays/${playSlug(play)}`).then(() => {
+                      router.push(`/${play.slug || playSlug(play)}`).then(() => {
                         if (typeof window !== "undefined") {
                           window.scrollTo({ top: 0, behavior: "smooth" });
                         }

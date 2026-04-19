@@ -3,6 +3,7 @@ module.exports = {
   async redirects() {
     return [
       { source: "/plays", destination: "/", permanent: true },
+      { source: "/plays/:slug", destination: "/:slug", permanent: true },
     ];
   },
   i18n: {

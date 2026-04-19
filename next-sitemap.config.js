@@ -14,17 +14,18 @@ module.exports = {
     const { PrismaClient } = require("@prisma/client");
     const prisma = new PrismaClient();
     try {
-      const plays = await prisma.play.findMany({ select: { id: true } });
-      const slug = (t) => (t || "").toLowerCase().replace(/ä/g,"ae").replace(/ö/g,"oe").replace(/ü/g,"ue").replace(/ß/g,"ss").replace(/[^a-z0-9\s-]/g,"").trim().replace(/\s+/g,"-").replace(/-+/g,"-");
-      return plays.map((play) => ({
-        loc: `/plays/${slug(play.title)}`,
-        changefreq: "weekly",
-        priority: 0.8,
-        alternateRefs: [
-          { href: `https://www.lysius.org/plays/${play.id}`, hreflang: "de" },
-          { href: `https://www.lysius.org/en/plays/${play.id}`, hreflang: "en" },
-        ],
-      }));
+      const plays = await prisma.play.findMany({ select: { slug: true } });
+      return plays
+        .filter((play) => play.slug)
+        .map((play) => ({
+          loc: `/${play.slug}`,
+          changefreq: "weekly",
+          priority: 0.8,
+          alternateRefs: [
+            { href: `https://www.lysius.org/${play.slug}`, hreflang: "de" },
+            { href: `https://www.lysius.org/en/${play.slug}`, hreflang: "en" },
+          ],
+        }));
     } finally {
       await prisma.$disconnect();
     }
