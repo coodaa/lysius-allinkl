@@ -17,7 +17,7 @@ module.exports = {
       const plays = await prisma.play.findMany({ select: { id: true } });
       const slug = (t) => (t || "").toLowerCase().replace(/ä/g,"ae").replace(/ö/g,"oe").replace(/ü/g,"ue").replace(/ß/g,"ss").replace(/[^a-z0-9\s-]/g,"").trim().replace(/\s+/g,"-").replace(/-+/g,"-");
       return plays.map((play) => ({
-        loc: `/plays/${play.id}-${slug(play.title)}`,
+        loc: `/plays/${slug(play.title)}`,
         changefreq: "weekly",
         priority: 0.8,
         alternateRefs: [

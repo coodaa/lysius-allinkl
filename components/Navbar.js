@@ -96,7 +96,7 @@ const Navbar = ({ currentTitle, plays = [] }) => {
                 <li key={play.id} onClick={handleLinkClick}>
                   <span
                     className={`${styles.link} ${
-                      router.asPath.startsWith(`/plays/${play.id}-`)
+                      router.asPath === `/plays/${playSlug(play)}`
                         ? styles.active
                         : ""
                     }`}

@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import PlayDetails from "../../components/PlayDetails";
 import prisma from "../../lib/prisma";
-import { playSlug, parsePlayId } from "../../lib/slugify";
+import { playSlug, slugify } from "../../lib/slugify";
 
 const BASE_URL = "https://www.lysius.org";
 
@@ -81,13 +81,16 @@ const PlayPage = ({ play, setCurrentTitle }) => {
 
 export async function getServerSideProps(context) {
   const { slug } = context.params;
-  const numericId = parsePlayId(slug);
-
-  if (!numericId) return { notFound: true };
+  if (!slug) return { notFound: true };
 
   try {
+    // Alle Titel holen und per Slug abgleichen
+    const allPlays = await prisma.play.findMany({ select: { id: true, title: true } });
+    const match = allPlays.find((p) => slugify(p.title || "") === slug);
+    if (!match) return { notFound: true };
+
     const play = await prisma.play.findUnique({
-      where: { id: numericId },
+      where: { id: match.id },
       select: {
         id: true,
         title: true, title_en: true,
@@ -155,17 +158,6 @@ export async function getServerSideProps(context) {
     });
 
     if (!play) return { notFound: true };
-
-    // Redirect /plays/2 → /plays/2-das-konzert
-    const canonicalSlug = playSlug(play);
-    if (slug !== canonicalSlug) {
-      return {
-        redirect: {
-          destination: `/plays/${canonicalSlug}`,
-          permanent: true,
-        },
-      };
-    }
 
     return {
       props: {
