@@ -8,7 +8,6 @@ import React, {
 import NextImage from "next/image";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
-import Head from "next/head";
 import Modal from "./Modal";
 import PlayDetailsList from "./PlayDetailsList";
 import SecondCarousel from "./SecondCarousel";
@@ -242,21 +241,6 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
 
   return (
     <>
-      <Head>
-        <title>{title}</title>
-        <meta name="description" content={subtitles[0]} />
-        {activeImages.map((image, index) => (
-          <meta key={index} property="og:image" content={image.url} />
-        ))}
-        {activeImages.map((image, index) => (
-          <meta
-            key={index}
-            name={`image-credit-${index + 1}`}
-            content={image.credit}
-          />
-        ))}
-      </Head>
-
       <div className={styles.pageContainer} ref={topRef}>
         {isMobile && mobileImages.length > 0 && (
           <div className={`${styles.imageContainer} ${styles.mobileImages}`}>
@@ -356,7 +340,7 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
           </div>
 
           <div className={styles.carouselVideoContainer}>
-            <h1 className={styles.titleDesktop}>{title}</h1>
+            <p className={styles.titleDesktop} aria-hidden="true">{title}</p>
             {subtitles.map((subtitle, i) => (
               <p key={i} className={styles.subtitleDesktop}>
                 {subtitle.split(" ").map((word, index) => (
