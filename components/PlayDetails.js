@@ -277,9 +277,8 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
                   <NextImage
                     src={image.url}
                     alt={title}
-                    layout="fill"
-                    objectFit="cover"
-                    objectPosition="top"
+                    fill
+                    style={{ objectFit: "cover", objectPosition: "top" }}
                     priority={index === 0}
                     loading={index === 0 ? "eager" : "lazy"}
                     sizes="(max-width: 768px) 100vw, 50vw"
@@ -304,9 +303,8 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
                   <NextImage
                     src={image.url}
                     alt={title}
-                    layout="fill"
-                    objectFit="cover"
-                    objectPosition="top"
+                    fill
+                    style={{ objectFit: "cover", objectPosition: "top" }}
                     priority={index === 0}
                     loading={index === 0 ? "eager" : "lazy"}
                     sizes="(max-width: 1000px) 100vw, 50vw"

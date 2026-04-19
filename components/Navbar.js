@@ -26,9 +26,8 @@ const Navbar = ({ currentTitle, plays = [] }) => {
     }
 
     return () => {
-      if (titleRef.current) {
-        observer.unobserve(titleRef.current);
-      }
+      const el = titleRef.current;
+      if (el) observer.unobserve(el);
     };
   }, []);
 

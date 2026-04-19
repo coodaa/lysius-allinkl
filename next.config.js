@@ -1,5 +1,10 @@
 module.exports = {
   reactStrictMode: true,
+  async redirects() {
+    return [
+      { source: "/plays", destination: "/", permanent: true },
+    ];
+  },
   i18n: {
     locales: ["en", "de"],
     defaultLocale: "de",
