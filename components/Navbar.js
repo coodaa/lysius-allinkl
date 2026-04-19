@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import styles from "../styles/Navbar.module.css";
+import { playSlug } from "../lib/slugify";
 
 const Navbar = ({ currentTitle, plays = [] }) => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -95,12 +96,12 @@ const Navbar = ({ currentTitle, plays = [] }) => {
                 <li key={play.id} onClick={handleLinkClick}>
                   <span
                     className={`${styles.link} ${
-                      router.pathname === `/plays/${play.id}`
+                      router.asPath.startsWith(`/plays/${play.id}-`)
                         ? styles.active
                         : ""
                     }`}
                     onClick={() =>
-                      router.push(`/plays/${play.id}`).then(() => {
+                      router.push(`/plays/${playSlug(play)}`).then(() => {
                         if (typeof window !== "undefined") {
                           window.scrollTo({ top: 0, behavior: "smooth" });
                         }
