@@ -61,7 +61,11 @@ const HomePage = ({ images, news }) => {
   return (
     <>
       <Head>
-        <title>Lysius</title>
+        <title>
+          {i18n.language === "en"
+            ? "Lysius e.V. – Theatre & Music Berlin | Fabiane Kemmann"
+            : "Lysius e.V. – Theater & Musik Berlin | Fabiane Kemmann"}
+        </title>
         <meta
           name="description"
           content={
@@ -74,7 +78,10 @@ const HomePage = ({ images, news }) => {
           name="keywords"
           content="Lysius, Lysius e.V., Kultur, Kunst, Theater, Musik, Berlin, Kulturverein, Fabiane Kemmann"
         />
-        <link rel="canonical" href="https://www.lysius.org/" />
+        <link
+          rel="canonical"
+          href={i18n.language === "en" ? "https://www.lysius.org/en" : "https://www.lysius.org/"}
+        />
         <link rel="alternate" hrefLang="de" href="https://www.lysius.org/" />
         <link rel="alternate" hrefLang="en" href="https://www.lysius.org/en" />
         <link rel="alternate" hrefLang="x-default" href="https://www.lysius.org/" />
