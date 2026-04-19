@@ -412,11 +412,9 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
                 <div className={styles.logoContainer}>
                   {logos.map((logo, index) => (
                     <div key={index} className={styles.logoWrapper}>
-                      <NextImage
+                      <img
                         src={logo}
                         alt={`Logo ${index + 1}`}
-                        fill
-                        style={{ objectFit: "contain" }}
                         className={styles.logoImage}
                       />
                     </div>
