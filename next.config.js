@@ -1,5 +1,6 @@
 module.exports = {
   reactStrictMode: true,
+  poweredByHeader: false,
   async redirects() {
     return [
       { source: "/plays", destination: "/", permanent: true },

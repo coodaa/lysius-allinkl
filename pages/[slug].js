@@ -16,12 +16,21 @@ const PlayPage = ({ play, setCurrentTitle }) => {
   const description = (
     (locale === "en" ? play.descriptionleft1_en : play.descriptionleft1) || ""
   ).slice(0, 160) || "Theaterstück von Lysius – Interweaving performance cultures";
-  const ogImage =
+  const rawOgImage =
     play.topImage1 ||
     play.imageUrl1 ||
     "https://res.cloudinary.com/dmpiogwyy/image/upload/f_auto,q_auto/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg";
+  const ogImage = rawOgImage.includes("cloudinary.com")
+    ? rawOgImage.replace("/upload/", "/upload/c_fill,w_1200,h_630,f_auto,q_auto/")
+    : rawOgImage;
   const slug = playSlug(play);
   const canonicalUrl = `${BASE_URL}/${slug}`;
+
+  const youtubeId = (() => {
+    const url = play.videoUrl1 || "";
+    const m = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|watch\?v=))([\w-]+)/);
+    return m ? m[1] : null;
+  })();
 
   const imageObjects = [];
   for (let i = 1; i <= 10; i++) {
@@ -54,6 +63,8 @@ const PlayPage = ({ play, setCurrentTitle }) => {
         <meta property="og:title" content={`${title} – Lysius`} />
         <meta property="og:description" content={description} />
         <meta property="og:image" content={ogImage} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:type" content="article" />
         <meta property="og:site_name" content="Lysius" />
@@ -98,13 +109,41 @@ const PlayPage = ({ play, setCurrentTitle }) => {
             dangerouslySetInnerHTML={{ __html: JSON.stringify(obj) }}
           />
         ))}
+        {youtubeId && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "VideoObject",
+                name: title,
+                description:
+                  (locale === "en"
+                    ? play.videoCredit1_en || play.videoCredit1_de
+                    : play.videoCredit1_de || play.videoCredit1_en) || description,
+                thumbnailUrl: `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`,
+                uploadDate: "2020-01-01",
+                contentUrl: `https://www.youtube.com/watch?v=${youtubeId}`,
+                embedUrl: `https://www.youtube.com/embed/${youtubeId}`,
+              }),
+            }}
+          />
+        )}
       </Head>
       <PlayDetails play={play} setCurrentTitle={setCurrentTitle} />
     </>
   );
 };
 
-export async function getServerSideProps(context) {
+export async function getStaticPaths() {
+  const plays = await prisma.play.findMany({ select: { slug: true } });
+  const paths = plays
+    .filter((p) => p.slug)
+    .map((p) => ({ params: { slug: p.slug } }));
+  return { paths, fallback: "blocking" };
+}
+
+export async function getStaticProps(context) {
   const { slug } = context.params;
   if (!slug) return { notFound: true };
 
@@ -186,10 +225,11 @@ export async function getServerSideProps(context) {
         play: serializedPlay,
         ...(await serverSideTranslations(context.locale, ["common"])),
       },
+      revalidate: 3600,
     };
   } catch (error) {
     console.error("Error fetching play:", error);
-    return { props: { error: "Error fetching play" } };
+    return { props: { error: "Error fetching play" }, revalidate: 60 };
   }
 }
 

@@ -6,14 +6,12 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import prisma from "../lib/prisma";
 
-export async function getServerSideProps({ locale }) {
+export async function getStaticProps({ locale }) {
   let images = [];
   let news = null;
 
   try {
-    // Fetch images from the landingpageimg table
     images = await prisma.landingpageimg.findMany();
-
     news = await prisma.News.findFirst();
   } catch (error) {
     console.error("Error fetching data from database:", error);
@@ -21,10 +19,11 @@ export async function getServerSideProps({ locale }) {
 
   return {
     props: {
-      images,
-      news,
+      images: JSON.parse(JSON.stringify(images)),
+      news: JSON.parse(JSON.stringify(news)),
       ...(await serverSideTranslations(locale, ["common"])),
     },
+    revalidate: 60,
   };
 }
 
@@ -96,8 +95,10 @@ const HomePage = ({ images, news }) => {
         />
         <meta
           property="og:image"
-          content="https://res.cloudinary.com/dmpiogwyy/image/upload/f_auto,q_auto/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg"
+          content="https://res.cloudinary.com/dmpiogwyy/image/upload/c_fill,w_1200,h_630,f_auto,q_auto/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg"
         />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
         <meta property="og:url" content="https://www.lysius.org/" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Lysius" />
@@ -115,7 +116,7 @@ const HomePage = ({ images, news }) => {
         />
         <meta
           name="twitter:image"
-          content="https://res.cloudinary.com/dmpiogwyy/image/upload/f_auto,q_auto/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg"
+          content="https://res.cloudinary.com/dmpiogwyy/image/upload/c_fill,w_1200,h_630,f_auto,q_auto/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg"
         />
 
         {/* Preload-Links für Bilder */}
