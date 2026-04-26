@@ -69,14 +69,13 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
 
   const topImages = useMemo(
     () =>
-      [
-        { url: play?.topImage1, credit: play?.topImageCredit1 || "" },
-        { url: play?.topImage2, credit: play?.topImageCredit2 || "" },
-        { url: play?.topImage3, credit: play?.topImageCredit3 || "" },
-        { url: play?.topImage4, credit: play?.topImageCredit4 || "" },
-        { url: play?.topImage5, credit: play?.topImageCredit5 || "" },
-        { url: play?.topImage6, credit: play?.topImageCredit6 || "" },
-      ].filter((image) => image.url && image.url.trim() !== ""),
+      [1, 2, 3, 4, 5, 6]
+        .map((i) => ({
+          url: play?.[`topImage${i}`],
+          credit_de: play?.[`imageCredit${i}_de`] || play?.[`imageCredit${i}`] || "",
+          credit_en: play?.[`imageCredit${i}_en`] || play?.[`imageCredit${i}`] || "",
+        }))
+        .filter((image) => image.url && image.url.trim() !== ""),
     [play]
   );
 
@@ -260,7 +259,10 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
                 >
                   <NextImage
                     src={image.url}
-                    alt={title}
+                    alt={
+                      (isEnglish ? image.credit_en : image.credit_de) ||
+                      `${title} – ${index + 1}`
+                    }
                     fill
                     style={{ objectFit: "cover", objectPosition: "top" }}
                     priority={index === 0}
@@ -286,7 +288,10 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
                 >
                   <NextImage
                     src={image.url}
-                    alt={title}
+                    alt={
+                      (isEnglish ? image.credit_en : image.credit_de) ||
+                      `${title} – ${index + 1}`
+                    }
                     fill
                     style={{ objectFit: "cover", objectPosition: "top" }}
                     priority={index === 0}

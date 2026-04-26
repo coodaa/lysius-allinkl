@@ -55,7 +55,11 @@ const SecondCarousel = ({
           >
             <Image
               src={image}
-              alt={`Carousel image ${index + 1}`}
+              alt={
+                (language === "en" ? credits_en[index] : credits_de[index]) ||
+                credits[index] ||
+                `Image ${index + 1}`
+              }
               fill
               style={{ objectFit: "contain" }}
               priority={index === 0}

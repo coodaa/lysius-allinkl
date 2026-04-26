@@ -23,6 +23,25 @@ const PlayPage = ({ play, setCurrentTitle }) => {
   const slug = playSlug(play);
   const canonicalUrl = `${BASE_URL}/${slug}`;
 
+  const imageObjects = [];
+  for (let i = 1; i <= 10; i++) {
+    const url = play[`imageUrl${i}`] || play[`topImage${i}`];
+    if (!url) continue;
+    const caption =
+      (locale === "en"
+        ? play[`imageCredit${i}_en`] || play[`imageCredit${i}_de`]
+        : play[`imageCredit${i}_de`] || play[`imageCredit${i}_en`]) ||
+      `${title} – ${i}`;
+    imageObjects.push({
+      "@context": "https://schema.org",
+      "@type": "ImageObject",
+      contentUrl: url,
+      caption,
+      description: caption,
+      name: caption,
+    });
+  }
+
   return (
     <>
       <Head>
@@ -72,6 +91,13 @@ const PlayPage = ({ play, setCurrentTitle }) => {
             }),
           }}
         />
+        {imageObjects.map((obj, i) => (
+          <script
+            key={`img-${i}`}
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(obj) }}
+          />
+        ))}
       </Head>
       <PlayDetails play={play} setCurrentTitle={setCurrentTitle} />
     </>
